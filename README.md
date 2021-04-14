@@ -35,7 +35,7 @@ This project was developed following School of Net "[Testes com PHPUnit](https:/
 After up the container:
 
 ```sh
-docker exec -t CONTAINER_NAME ./vendor/bin/phpunit --testdox
+./vendor/bin/phpunit tests/ProductTest.php --testdox --colors
 ```
 
 ## About Me
