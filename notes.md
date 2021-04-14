@@ -7,3 +7,7 @@ composer.init
 composer require phpunit/phpunit --dev
 
 composer dumpautoload
+
+phpunit --bootstrap=vendor/autoload.php tests/MyFirstTest.php
+
+-> ./vendor/bin/phpunit tests/MyFirstTest.php
