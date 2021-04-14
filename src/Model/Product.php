@@ -77,14 +77,4 @@ class Product
     {
         return $this->total;
     }
-
-    /**
-     * @param mixed $total
-     * @return Product
-     */
-    public function setTotal($total): Product
-    {
-        $this->total = $total;
-        return $this;
-    }
 }
