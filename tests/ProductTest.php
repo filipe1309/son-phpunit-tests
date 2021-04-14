@@ -11,35 +11,35 @@ class ProductTest extends BaseTestCase
         $this->assertNull($product->getId());
     }
 
-    public function testSetAndGetName()
-    {
-        $product = new Product();
-        $this->assertNull($product->getName());
-        $this->assertInstanceOf(Product::class, $product->setName('My product 1'));
-        $this->assertEquals('My product 1', $product->getName());
-    }
-
-    public function testSetAndGetPrice()
-    {
-        $product = new Product();
-        $this->assertNull($product->getPrice());
-        $this->assertInstanceOf(Product::class, $product->setPrice(10.10));
-        $this->assertEquals(10.10, $product->getPrice());
-        $this->assertInstanceOf(Product::class, $product);
-    }
-
-    public function testSetAndGetQuantity()
-    {
-        $product = new Product();
-        $this->assertNull($product->getQuantity());
-        $this->assertInstanceOf(Product::class, $product->setQuantity(5));
-        $this->assertEquals(5, $product->getQuantity());
-        $this->assertInstanceOf(Product::class, $product);
-    }
-
     public function testIfTotalIsNull()
     {
         $product = new Product();
         $this->assertNull($product->getTotal());
+    }
+
+    /**
+     * @dataProvider collectionData
+     */
+    public function testEncapsulate($property, $expected)
+    {
+        $product = new Product();
+
+        $genericGet = $product->{'get' . ucfirst($property)}();
+        $this->assertNull($genericGet);
+
+        $genericSet = $product->{'set' . ucfirst($property)}($expected);
+        $this->assertInstanceOf(Product::class, $genericSet);
+
+        $genericGet = $product->{'get' . ucfirst($property)}();
+        $this->assertEquals($expected, $genericGet);
+    }
+
+    public function collectionData()
+    {
+        return [
+            ['name', 'Product 1', 'Product 1'],
+            ['price', 10.11, 10.11],
+            ['quantity', 5, 5],
+        ];
     }
 }
