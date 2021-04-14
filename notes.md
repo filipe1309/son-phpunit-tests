@@ -11,3 +11,5 @@ composer dumpautoload
 phpunit --bootstrap=vendor/autoload.php tests/MyFirstTest.php
 
 -> ./vendor/bin/phpunit tests/MyFirstTest.php
+
+-> ./vendor/bin/phpunit tests/ProductTest.php --testdox --colors
