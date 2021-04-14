@@ -7,6 +7,9 @@ class ProductTest extends BaseTestCase
 {
     public function testIfIdIsNull()
     {
+        // global $db;
+        // echo get_class($db);
+
         $product = new Product();
         $this->assertNull($product->getId());
     }
