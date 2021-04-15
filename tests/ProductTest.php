@@ -5,16 +5,24 @@ use PHPUnit\Framework\TestCase as BaseTestCase;
 
 class ProductTest extends BaseTestCase
 {
+    private $product;
+
+    public function setUp(): void
+    {
+        $pdo = $this->getMockBuilder(\PDO::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->product = new Product($pdo);
+    }
+
     public function testIfIdIsNull()
     {
-        $product = new Product();
-        $this->assertNull($product->getId());
+        $this->assertNull($this->product->getId());
     }
 
     public function testIfTotalIsNull()
     {
-        $product = new Product();
-        $this->assertNull($product->getTotal());
+        $this->assertNull($this->product->getTotal());
     }
 
     /**
@@ -22,15 +30,13 @@ class ProductTest extends BaseTestCase
      */
     public function testEncapsulate($property, $expected)
     {
-        $product = new Product();
-
-        $genericGet = $product->{'get' . ucfirst($property)}();
+        $genericGet = $this->product->{'get' . ucfirst($property)}();
         $this->assertNull($genericGet);
 
-        $genericSet = $product->{'set' . ucfirst($property)}($expected);
+        $genericSet = $this->product->{'set' . ucfirst($property)}($expected);
         $this->assertInstanceOf(Product::class, $genericSet);
 
-        $genericGet = $product->{'get' . ucfirst($property)}();
+        $genericGet = $this->product->{'get' . ucfirst($property)}();
         $this->assertEquals($expected, $genericGet);
     }
 
