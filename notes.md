@@ -12,4 +12,4 @@ phpunit --bootstrap=vendor/autoload.php tests/MyFirstTest.php
 
 -> ./vendor/bin/phpunit tests/MyFirstTest.php
 
--> ./vendor/bin/phpunit tests/ProductTest.php --testdox --colors
+./vendor/bin/phpunit tests/ProductDBTest.php --testdox --colors --bootstrap=tests/bootstrap.php
