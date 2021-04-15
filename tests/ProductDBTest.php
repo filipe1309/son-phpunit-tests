@@ -54,7 +54,7 @@ class ProductDBTest extends BaseTestCase
             'quantity' => 20,
         ]);
 
-        $this->assertEquals(1, $product->getId());
+        $this->assertEquals($id, $product->getId());
         $this->assertEquals('Product 1.1', $product->getName());
         $this->assertEquals(300.20, $product->getPrice());
         $this->assertEquals(20, $product->getQuantity());
