@@ -59,5 +59,21 @@ class ProductDBTest extends BaseTestCase
         $this->assertEquals(300.20, $product->getPrice());
         $this->assertEquals(20, $product->getQuantity());
         $this->assertEquals(300.20 * 20, $product->getTotal());
+
+        return $id;
+    }
+
+    /**
+     * @depends testIfProductIsUpdated
+     */
+    public function testIfProductCanBeDeleted($id)
+    {
+        global $db;
+        $product = new Product($db);
+        $result = $product->delete($id);
+
+        $this->assertTrue($result);
+        $products = $product->all();
+        $this->assertCount(1, $products);
     }
 }
