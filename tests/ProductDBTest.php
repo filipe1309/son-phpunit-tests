@@ -6,11 +6,16 @@ use PHPUnit\Framework\TestCase as BaseTestCase;
 class ProductDBTest extends BaseTestCase
 {
     // protected $backupGlobals = false; 
+    private static $db;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$db = getPDO();
+    }
 
     public function testIfProductIsSaved()
     {
-        global $db;
-        $product = new Product($db);
+        $product = new Product(self::$db);
         $result = $product->save([
             'name' => 'Product 1',
             'price' => 200.20,
@@ -28,8 +33,7 @@ class ProductDBTest extends BaseTestCase
 
     public function testIfListProducts()
     {
-        global $db;
-        $product = new Product($db);
+        $product = new Product(self::$db);
         $result = $product->save([
             'name' => 'Product 1',
             'price' => 200.20,
@@ -45,8 +49,7 @@ class ProductDBTest extends BaseTestCase
      */
     public function testIfProductIsUpdated($id)
     {
-        global $db;
-        $product = new Product($db);
+        $product = new Product(self::$db);
         $result = $product->save([
             'id' => $id,
             'name' => 'Product 1.1',
@@ -68,8 +71,7 @@ class ProductDBTest extends BaseTestCase
      */
     public function testIfProductCanBeRecovered($id)
     {
-        global $db;
-        $product = new Product($db);
+        $product = new Product(self::$db);
         $result = $product->find($id);
 
         $this->assertEquals($id, $result->getId());
@@ -81,9 +83,8 @@ class ProductDBTest extends BaseTestCase
 
     public function testIfProductNotFound()
     {
-        global $db;
         $id = 99999;
-        $product = new Product($db);
+        $product = new Product(self::$db);
 
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('Produto não existente.');
@@ -95,8 +96,7 @@ class ProductDBTest extends BaseTestCase
      */
     public function testIfProductCanBeDeleted($id)
     {
-        global $db;
-        $product = new Product($db);
+        $product = new Product(self::$db);
         $result = $product->delete($id);
 
         $this->assertTrue($result);
