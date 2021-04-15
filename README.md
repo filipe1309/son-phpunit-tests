@@ -10,24 +10,19 @@ This project was developed following School of Net "[Testes com PHPUnit](https:/
 
 ## :computer: Technologies
 
--   [Docker](https://www.docker.com/)
+-   [PHP](https://www.php.net/)
+-   [Composer](https://getcomposer.org/)
+-   [PHPUnit](https://phpunit.de/)
 
 ## :scroll: Requirements
 
--   [Docker](https://www.docker.com/)
+-   [PHP](https://www.php.net/)
+-   [Composer](https://getcomposer.org/)
 
 ## :cd: Installation
 
 ```sh
-./bin/runenv.sh
-```
-
-## :runner: Running
-
-**Up app**
-
-```sh
-./bin/runenv.sh
+composer install
 ```
 
 ## :white_check_mark: Tests
